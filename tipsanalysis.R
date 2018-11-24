@@ -93,8 +93,11 @@ optim(par = c(0,0.1, 0.1), fn = nll.exg, data = tips$tip)
 x = seq(-1,10,0.01)
 plot(density(tips$tip), 
      ylim = c(0, 0.50),
-     main = "Model of tip distribution vs. Actual")
+     main = "Model of tip distribution vs. Actual",
+     xlab = "tip")
 lines(x, dexg(x,  mu = 1.589, sigma = 0.427, tau = 1.409), lty=2)
+
+
 
 
 
