@@ -57,6 +57,18 @@ tips %>%
             averagetip = mean(tip)) %>% 
   arrange(size)
 
+#We'll look at a visual representation to further explain this relationship. I added
+#time as a component within the graph. As expected, there are more teal dots than there
+#are orange dots, because most of their business are conducted at night. Although
+#there aren't many factor levels within the size variable, the visual clearly shows,
+# a positive relationship within size of party and average tip amount.
+
+tips %>% 
+  ggplot()+
+  geom_point(aes(x=size, y = tip, color = time), position = "jitter")+
+  geom_smooth(aes(x=size, y = tip), se = FALSE)
+  
+
 #The time variable shows that only 28% of buisness was conducted during the day time. This
 #variable is a bit misleading because we aren't sure exacly how many hours would fall under the
 #day and night time factors. There could be equal amount of hours that fall under both
@@ -77,9 +89,15 @@ tips %>%
   ggplot(aes(x = tip)) + 
   geom_density()
 
+#Because the ex-gaussian formula is not in R, we have to build and save it.
+
 dexg <- function(x, mu, sigma, tau){
   return((1/tau)*exp((sigma^2/(2*tau^2))-(x-mu)/tau)*pnorm((x-mu)/sigma-(sigma/tau)))
 }
+
+#The ex-gaussian formula takes 3 parameters. The first 2 parameters are your mean (mu)
+# and standard deviation (sigma). The third parmeter would be the exponential component
+# of our curve (tau).
 
 nll.exg <- function(data, par){
   return(-sum(log(dexg(data,
@@ -89,6 +107,10 @@ nll.exg <- function(data, par){
 }
 
 optim(par = c(0,0.1, 0.1), fn = nll.exg, data = tips$tip)
+
+#Now that we have the funtion built in R, it produces the values that we should use
+#for our curve. We'll plug in the respective figures (mu = 1.589, sigma = 0.427, tau = 1.40)into the lines
+#function to see how well we can fit our model over the actual distribution.
 
 x = seq(-1,10,0.01)
 plot(density(tips$tip), 
