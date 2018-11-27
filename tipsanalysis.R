@@ -1,4 +1,4 @@
-#We'll load in our 'Tips' Dataset and rename.
+#We'll load in our 'tips' Dataset and rename.
 tips <- read.csv("C:/Git/Tools for Data Analysis/tips (1).csv")
 
 #These are the main 2 packages we'll use for our analysis.
@@ -45,7 +45,7 @@ tips %>%
 #would be. There is a significant increase in the average tip amount from party
 #size of 1 person vs. 2 people. I'm assuming that 2 people are possibly on a dates,
 #and therefore causing tipper to give a sinificant amount for the person they're
-#on a data with. A party size of 4 people might also mean they're on double dates,
+#on a date with. A party size of 4 people might also mean they're on double dates,
 #which caused the tippers to give a signigicantly higher amount than a party
 #of 3 or 5 people. The 5th person might be the odd ball in the group and tipped
 #a smaller amount than the rest of the group.
@@ -59,9 +59,9 @@ tips %>%
 
 #We'll look at a visual representation to further explain this relationship. I added
 #time as a component within the graph. As expected, there are more teal dots than there
-#are orange dots, because most of their business are conducted at night. Although
-#there aren't many factor levels within the size variable, the visual clearly shows,
-# a positive relationship within size of party and average tip amount.
+#are orange dots, because most of their business is conducted at night. Although
+#there aren't many factor levels within the size variable, the visual clearly shows
+# a positive relationship between size of party and average tip amount.
 
 tips %>% 
   ggplot()+
@@ -70,8 +70,8 @@ tips %>%
   
 
 #The time variable shows that only 28% of buisness was conducted during the day time. This
-#variable is a bit misleading because we aren't sure exacly how many hours would fall under the
-#day and night time factors. There could be equal amount of hours that fall under both
+#variable is a bit misleading because we aren't sure exactly how many hours would fall under the
+#day and night factor variable. There could be equal amount of hours that fall under both
 #categories. It's likely that more patrons are visiting the restaurant at night. But we can't
 #difinitively make that assumption.
 
